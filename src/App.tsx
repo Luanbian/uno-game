@@ -1,6 +1,6 @@
 import { useGame } from "./hooks/useGame";
 import { LobbyScreen } from "./screens/LobbyScreen";
-import { CardGallery } from "./screens/CardGallery";
+import { GameScreen } from "./screens/GameScreen";
 
 function App() {
   const { gameState } = useGame();
@@ -8,8 +8,7 @@ function App() {
   const gameStarted = (gameState?.discard_pile?.length ?? 0) > 0;
 
   if (!gameStarted) return <LobbyScreen />;
-
-  return <CardGallery />;
+  return <GameScreen />;
 }
 
 export default App;

@@ -1,5 +1,6 @@
 import { useGame } from "./hooks/useGame";
 import { LobbyScreen } from "./screens/LobbyScreen";
+import { CardGallery } from "./screens/CardGallery";
 
 function App() {
   const { gameState } = useGame();
@@ -8,12 +9,7 @@ function App() {
 
   if (!gameStarted) return <LobbyScreen />;
 
-  // GameScreen virá na próxima etapa
-  return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">
-      Jogo em andamento...
-    </div>
-  );
+  return <CardGallery />;
 }
 
 export default App;

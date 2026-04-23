@@ -2,9 +2,9 @@ import { useGame } from "./hooks/useGame";
 import { LobbyScreen } from "./screens/LobbyScreen";
 
 function App() {
-  const { nickname, gameState } = useGame();
+  const { gameState } = useGame();
 
-  const gameStarted = gameState !== null && gameState.discard_pile.length > 0;
+  const gameStarted = (gameState?.discard_pile?.length ?? 0) > 0;
 
   if (!gameStarted) return <LobbyScreen />;
 

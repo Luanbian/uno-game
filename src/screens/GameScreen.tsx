@@ -28,11 +28,16 @@ export function GameScreen() {
   const stacked = gameState.stacked_cards;
   const opponents = gameState.players.filter((p) => p !== nickname);
 
-  // Precisa escolher cor (jogou coringa e ainda não escolheu)
-  const needsColorSelect = top?.type === "colorSelect" && isMyTurn;
+  // Precisa escolher cor: topo é wild (color "none") e eu sou o LastPlayer
+  // Joker: CurrentPlayer fica em mim. +4: CurrentPlayer pula (jumpNextPlayer),
+  // mas LastPlayer ainda aponta para quem jogou — por isso usamos LastPlayer aqui.
+  const lastIdx = gameState.last_player;
+  const needsColorSelect =
+    top?.color === "none" &&
+    lastIdx >= 0 &&
+    gameState.players[lastIdx] === nickname;
 
   // Lógica de UNO e punição
-  const lastIdx = gameState.last_player;
   const lastPlayerName = lastIdx >= 0 ? gameState.players[lastIdx] : null;
   const lastHandSize = lastPlayerName
     ? (gameState.hands[lastPlayerName]?.length ?? 0)
